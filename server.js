@@ -1,8 +1,14 @@
 
 const express = require('express');
-const bodyParser = require('body-parser');
+const path = require('path');
+const hbs = require('express-handlebars');
+const routes = require('./controllers');
+const helpers = require('./utils/helpers');
+const sequelize = require('./config/connection');
+
+
 const session = require('express-session');
-const db = require('./db');
+
 
 const app = express();
 
@@ -13,7 +19,8 @@ app.use(
   session({
     secret: 'your_secret_key',
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: true,
+    db: sequelize
   })
 );
 
