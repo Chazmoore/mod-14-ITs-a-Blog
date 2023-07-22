@@ -1,33 +1,41 @@
-const { Sequelize, DataTypes } = require('sequelize');
+const { DataTypes, Model } = require('sequelize');
 const sequelize = require('../config/connection');
 
-const User = sequelize.define('User', {
-    id: {
+class User extends Model {}
+
+User.init(
+    {
+      id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
-        primaryKey: true
-    },
-    username: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    email: {
+        primaryKey: true,
+      },
+      username: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true
-    },
-    password: {
+      },
+      email: {
         type: DataTypes.STRING,
-        allowNull: false
-     }
-});
+        allowNull: false,
+        unique: true,
+      },
+      password: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+    },
+    {
+      sequelize,
+      modelName: 'user',
+    }
+  );
 
-sequelize.sync({ froce: true})
-    .then(() => {
-        console.log('Models synchronized with the database');
-    })
-    .catch((error) => {
-        console.error('Error synchronizing models:', error);
-    });
+// sequelize.sync({ froce: true})
+//     .then(() => {
+//         console.log('Models synchronized with the database');
+//     })
+//     .catch((error) => {
+//         console.error('Error synchronizing models:', error);
+//     });
 
     module.exports = User;
