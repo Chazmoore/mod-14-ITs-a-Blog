@@ -1,8 +1,5 @@
 const { Sequelize, DataTypes } = require('sequelize');
-const sequelize = new Sequelize('database', 'username', 'password', {
-    dialect: 'mysql',
-    host: 'localhost'
-});
+const sequelize = require('../config/connection');
 
 const User = sequelize.define('User', {
     id: {

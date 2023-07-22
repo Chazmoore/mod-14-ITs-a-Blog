@@ -5,5 +5,5 @@ function formatDate(date) {
 }
 
 module.exports = {
-    formateDate
+    formatDate
 }

@@ -1,0 +1,33 @@
+{{!-- Specify the layout to use --}}
+{{> mainLayout}}
+
+{{!-- Page-specific content --}}
+<div class="container">
+    <h1>Welcome to the Homepage</h1>
+
+    {{!-- Check if there are existing blog posts --}}
+    {{#if blogPosts.length}}
+        <ul>
+            {{#each blogPosts}}
+                <li>
+                    <a href="/post/{{this._id}}">{{this.title}}</a> - {{this.date}}
+                </li>
+            {{/each}}
+        </ul>
+    {{else}}
+        <p>No blog posts have been created yet.</p>
+    {{/if}}
+
+    {{!-- Navigation links for the homepage and the dashboard --}}
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/dashboard">Dashboard</a></li>
+        </ul>
+    </nav>
+
+    {{!-- Option to log in (Replace this with your actual login link or button) --}}
+    {{!-- Example: <a href="/login">Login</a> --}}
+    <p>Option to log in</p>
+</div>
+

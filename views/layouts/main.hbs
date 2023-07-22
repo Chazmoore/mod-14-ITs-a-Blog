@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{pageTitle}}</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/dashboard">Dashboard</a></li>
+                {{#if loggedIn}}
+                    <li><a href="/logout">Logout</a></li>
+                    <script src="logout.js"></script>
+                {{else}}
+                    <li><a href="/login">Login</a></li>
+                    <script src="login.js"></script>
+                {{/if}}
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {{{body}}}
+    </main>
+
+    <!-- Include Handlebars library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+
+    <!-- Your JavaScript code -->
+   <script src="/public/Javascript/login.js"></script>
+   <script src="/public/Javascript/logout.js"></script>
+</body>
+</html>

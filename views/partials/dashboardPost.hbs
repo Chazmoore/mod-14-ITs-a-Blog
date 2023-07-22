@@ -1,0 +1,31 @@
+<!-- dashboardPost.hbs -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Dashboard</h1>
+
+    <h2>Your Blog Posts:</h2>
+    {{#if blogPosts.length}}
+        <ul>
+            {{#each blogPosts}}
+                <li>
+                    <a href="/post/{{this._id}}">{{this.title}}</a> - {{this.date}}
+                </li>
+            {{/each}}
+        </ul>
+    {{else}}
+        <p>No blog posts created yet.</p>
+    {{/if}}
+
+    <button id="newPostBtn">Add a New Blog Post</button>
+
+    <!-- Include Handlebars library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+
+    <!-- Your JavaScript code -->
+    <script src="/public/Javascript/dashboard.js"></script>
+</body>
+</html>
