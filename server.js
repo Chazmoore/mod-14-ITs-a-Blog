@@ -3,16 +3,13 @@ const path = require('path');
 const exphbs = require('express-handlebars');
 const helpers = require('./utils/helpers');
 const sequelize = require('./config/connection');
-const postRoutes = require('./controllers/api/post-routes');
 const session = require('express-session');
-const User = require('./models/User'); 
+
 
 const app = express();
 const PORT = 3001; // Define the PORT variable
 
-// Middleware
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+
 app.use(
   session({
     secret: 'your_secret_key',
@@ -27,11 +24,16 @@ const hbs = exphbs.create({ helpers });
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
-// API routes
-app.use('/api', postRoutes); // Use '/api' as the base URL for postRoutes
-
-// Static files
+// Middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
+
+// API routes
+ // app.use('/api', postRoutes); // Use '/api' as the base URL for postRoutes
+// app.use('/',require('./controllers'));
+app.use(require('./controllers')); 
+
 
 // Start the server
 sequelize.sync({ force: false }).then(() => {

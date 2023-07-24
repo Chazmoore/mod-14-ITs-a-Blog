@@ -1,13 +1,12 @@
-const User = require('../models/User');
+const router = require('express').Router();
 
-exports.createUser = (req, res) => {
-    const { username, email, password } = req.body;
-    User.create({ username, email, password })
-    .then((user) => {
-        res.send(user);
-    })
-    .catch((error) => {
-        console.error('Error creating user:', error);
-        res.status(500).send("Internal Server Error");
-    });
-};
+const apiRoutes = require('./api');
+const homeRoutes = require('./home-routes');
+const dashboardRoutes = require('./api/dashboard-routes');
+
+router.use('/', homeRoutes);
+router.use('/dashboard', dashboardRoutes);
+router.use('/api', apiRoutes);
+
+
+module.exports = router;
