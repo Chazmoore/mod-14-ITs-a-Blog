@@ -9,13 +9,17 @@ A WordPress type blog site that will allow users to create, comment, and read bl
 
 # Source/help
 
-AskBCS
+AskBCS - multiple times
 
-tutor= Wongani Jere
+tutor- Wongani Jere
 
 Chatgpt - some troubleshooting
+
+Module mini project for refernce
 
 
 # delpoy
 
 https://its-a-blog-250b0b63d58f.herokuapp.com/
+
+https://github.com/Chazmoore/mod-14-ITs-a-Blog.git
