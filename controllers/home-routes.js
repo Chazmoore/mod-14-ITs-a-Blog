@@ -2,6 +2,7 @@ const router = require('express').Router();
 const sequelize = require('../config/connection');
 const { User, Post, Comment} = require('../models');
 
+// router.use(‘/’, homeRoutes);
 
 router.get('/', (req, res) => {
     Post.findAll({
@@ -31,7 +32,7 @@ router.get('/', (req, res) => {
 
         res.render('homepage', {
             post,
-            loggeedIn: req.session.loggeedIn
+            loggedIn: req.session.loggedIn
         });
     });
 
