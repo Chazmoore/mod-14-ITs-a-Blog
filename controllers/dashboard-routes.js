@@ -5,34 +5,45 @@ const sequelize = require('../config/connection');
 
 // User's all posts ('/dashboard')
 router.get('/', withAuth, (req, res) => {
-    Post.findAll({
-      where: {
-        userId: req.session.userId,
-      },
-      attributes: ['id', 'title', 'content', 'created_at'],
-      order: [['created_at', 'DESC']],
-      include: [
-        {
-          model: Comment,
-          attributes: ['id', 'comment', 'postId', 'userId', 'created_at'],
-          include: {
-            model: User,
-            attributes: ['username'],
-          },
-        },
-        {
+  const userId = req.session.userId; // Use userId from req.session
+  if (!userId) {
+    // Redirect to the login page if userId is not set
+    res.redirect('/login');
+    return;
+  }
+
+  Post.findAll({
+    where: {
+      userId, // Use userId from req.session
+    },
+    attributes: ['id', 'title', 'content', 'created_at'],
+    order: [['created_at', 'DESC']],
+    include: [
+      {
+        model: Comment,
+        attributes: ['id', 'comment', 'postId', 'userId', 'created_at'],
+        include: {
           model: User,
           attributes: ['username'],
         },
-      ],
+      },
+      {
+        model: User,
+        attributes: ['username'],
+      },
+    ],
+  })
+    .then((dbPostData) => {
+      const posts = dbPostData.map((post) => post.get({ plain: true }));
+      res.render('dashboard', {
+        posts,
+        loggedIn: true,
+        username: req.session.username,
+      });
     })
-      .then((dbPostData) => {
-        const posts = dbPostData.map((post) => post.get({ plain: true }));
-        res.render('dashboard', { posts, loggedIn: true, username: req.session.username,});       
-      })
-      .catch((err) => {
-        console.log(err);
-        res.status(500).json(err);
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
     });
 });
 
@@ -64,7 +75,11 @@ router.get('/edit/:id', withAuth, (req, res) => {
         return;
       }
       const post = dbPostData.get({ plain: true });
-      res.render('edit-post', { post, loggedIn: true, username: req.session.username });         
+      res.render('edit-post', {
+        post,
+        loggedIn: true,
+        username: req.session.username,
+      });
     })
     .catch((err) => {
       console.log(err);
@@ -72,9 +87,9 @@ router.get('/edit/:id', withAuth, (req, res) => {
     });
 });
 
-//  Get new post ('/dashboard/new)
+// Get new post ('/dashboard/new')
 router.get('/new', withAuth, (req, res) => {
-    res.render('new-post', { username: req.session.username });
+  res.render('new-post', { username: req.session.username });
 });
 
-module.exports = router;  
+module.exports = router;

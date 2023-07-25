@@ -1,23 +1,26 @@
 const loginFormHandler = async (event) => {
     event.preventDefault();
-
-    const usernameEl = document.querySelector("#username-login");
-    const passwordEl = document.querySelector("#password-login");
-
-    const response = await fetch ('/api/user/login', {
-        method: 'POST',
-        body: JSON.stringify({
-            username: usernameEl.value,
-            password: passwordEl.value,
-        }),
-        headers: { 'Content-Type': 'application/json' },
+  
+    const usernameEl = document.querySelector("#username");
+    const passwordEl = document.querySelector("#password");
+  
+    const response = await fetch('/login', {
+      method: 'POST',
+      body: JSON.stringify({
+        username: usernameEl.value,
+        password: passwordEl.value,
+      }),
+      headers: { 'Content-Type': 'application/json' },
     });
-
+  
     if (response.ok) {
-        document.location.replace('/dashboard'); 
+      document.location.replace('/dashboard');
     } else {
-        alert('Something wrong!')
+      alert('Something wrong!');
     }
-};
-
-document.querySelector('#login-form').addEventListener('submit', loginFormHandler);
+  };
+  
+  // Correct the event listener assignment
+  const loginForm = document.querySelector('#loginForm');
+  loginForm.addEventListener('submit', loginFormHandler);
+  

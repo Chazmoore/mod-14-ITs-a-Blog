@@ -20,7 +20,7 @@ router.post('/', async (req, res) => {
   
   router.post('/login', async (req, res) => {
     try {
-      const dbUserData = await User.findOne({ where: { email: req.body.email } });
+      const dbUserData = await User.findOne({ where: { username: req.body.username } });
   
       if (!dbUserData) {
         res
@@ -44,6 +44,7 @@ router.post('/', async (req, res) => {
         req.session.logged_in = true;
         
         res.json({ user: dbUserData, message: 'You are now logged in!' });
+        res.redirect('/dashboard');
       });
   
     } catch (err) {
@@ -63,6 +64,25 @@ router.post('/', async (req, res) => {
     } catch {
         res.status(400).end();
     }
+});
+
+// Logout route handler (change to GET request)
+router.get('/logout', (req, res) => {
+  if (req.session.loggedIn) {
+    // Destroy the session to log out the user
+    req.session.destroy(err => {
+      if (err) {
+        console.log(err);
+        res.status(500).json(err);
+      } else {
+        // Redirect the user to the home page after logout
+        res.redirect('/');
+      }
+    });
+  } else {
+    // If the user is not logged in, simply redirect to the home page
+    res.redirect('/');
+  }
 });
 
 

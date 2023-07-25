@@ -1,7 +1,11 @@
-{{!-- views/dashboard.handlebars --}}
-
 <body>
+    <!-- Include the main header -->
+    {{> main}}
+
     <div class="dashboard-content">
+        <!-- Include the create post form -->
+        {{> create}}
+
         {{#if blogPosts.length}}
             <div class="existing-posts">
                 <h3>Your Existing Blog Posts</h3>
@@ -19,21 +23,6 @@
         {{else}}
             <p>You haven't created any blog posts yet.</p>
         {{/if}}
-
-        <div class="add-post">
-            <h3>Add a New Blog Post</h3>
-            <form id="newPostForm" action="/dashboard/add" method="post">
-                <div class="form-group">
-                    <label for="postTitle">Title:</label>
-                    <input type="text" id="postTitle" name="title" required>
-                </div>
-                <div class="form-group">
-                    <label for="postContent">Content:</label>
-                    <textarea id="postContent" name="content" rows="4" required></textarea>
-                </div>
-                <button type="submit">Create Post</button>
-            </form>
-        </div>
     </div>
 
     <!-- Include your JavaScript files for dashboard functionality -->
@@ -42,6 +31,9 @@
     <script src="/Javascript/deletepost.js"></script>
 </body>
 </html>
+
+</html>
+
 
 
 
