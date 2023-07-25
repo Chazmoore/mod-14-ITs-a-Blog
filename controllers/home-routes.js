@@ -88,10 +88,17 @@ router.get('/', (req, res) => {
         }
         res.render('login');
     });
+    router.get('/signup', (req, res) => {
+        if (req.session.loggeedIn) {
+            res.redirect('/');
+            return;
+        }
+        res.render('signup');
+    });
 
-    router.get('*', (req, res)=> {
-        res.status(404).send("Access not allowed!");
-    })
+    // router.get('*', (req, res)=> {
+    //     res.status(404).send("Access not allowed!");
+    // })
 })
 
 module.exports = router;
