@@ -1,36 +1,32 @@
+{{!-- views/login.handlebars --}}
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Sign Up Page</title>
+    <title>Login</title>
+    <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="/public/css/style.css">
 </head>
 <body>
-    <h1>Sign Up</h1>
-    <form id="signupForm">
-        <label for="username">Username:</label>
-        <input type="text" name="username" id="username" required>
-        <br>
+    
+      <div class="login-form">
+        <h2>Login</h2>
+        <form id="loginForm" action="/login" method="post">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <a href="/views/signup.hbs">Sign up</a></p>
+    </div>
 
-        <label for="password">Password:</label>
-        <input type="password" name="password" id="password" required>
-        <br>
-
-        <button type="submit">Sign Up</button>
-    </form>
-
-    <p>Already have an account? <a href="/login">Login</a></p>
-
-    <!-- Include Handlebars library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
-
-    <!-- Your Handlebars template script -->
-    <script id="message-template" type="text/x-handlebars-template">
-        <div class="message">
-            <h2>{{title}}</h2>
-            <p>{{message}}</p>
-        </div>
-    </script>
-
-    <!-- Your JavaScript code -->
+    <!-- Include your JavaScript file for login functionality -->
     <script src="/public/Javascript/login.js"></script>
 </body>
 </html>
+
+

@@ -1,0 +1,25 @@
+/* public/css/styles.css */
+.header {
+  background-color: purple; /* Purple container background */
+  padding: 10px;
+  text-align: center;
+}
+
+.header h1 {
+  font-size: 32px;
+  font-weight: bold;
+  color: pink; /* Pink color for h1 */
+}
+
+.nav {
+  margin: 10px 0;
+}
+
+.nav a {
+  margin-right: 10px;
+  text-decoration: none;
+  color: blue; /* Blue color for navigation links */
+}
+
+
+  

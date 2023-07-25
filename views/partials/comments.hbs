@@ -1,6 +1,16 @@
-<!-- comments.hbs -->
-<form id="commentForm">
-  <label for="comment">Leave a comment:</label>
-  <textarea id="comment" name="comment" rows="3" required></textarea>
-  <button type="submit">Submit Comment</button>
-</form>
+{{!-- views/partials/comments.handlebars --}}
+{{#if comments.length}}
+  <div class="comments-section">
+    <h3>Comments</h3>
+    {{#each comments}}
+      <div class="comment">
+        <p>{{comment}}</p>
+        <p>By: {{username}}</p>
+        <p>Date: {{date}}</p>
+      </div>
+    {{/each}}
+  </div>
+{{else}}
+  <p>No comments yet.</p>
+{{/if}}
+

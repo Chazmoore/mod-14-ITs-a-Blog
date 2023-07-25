@@ -1,34 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{{pageTitle}}</title>
+    <title>My Blog</title>
+    <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="/public/css/style.css">
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/dashboard">Dashboard</a></li>
-                {{#if loggedIn}}
-                    <li><a href="/logout">Logout</a></li>
-                    <script src="logout.js"></script>
-                {{else}}
-                    <li><a href="/login">Login</a></li>
-                    <script src="login.js"></script>
-                {{/if}}
-            </ul>
-        </nav>
-    </header>
-
-    <main>
-        {{{body}}}
-    </main>
-
-    <!-- Include Handlebars library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
-
-    <!-- Your JavaScript code -->
-   <script src="/public/Javascript/login.js"></script>
-   <script src="/public/Javascript/logout.js"></script>
+    <div class="header">
+        <h1>It's a Blog</h1>
+        <div class="nav">
+            <a href="/">Home</a>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/login">Login</a>
+            <a href="/signup">Signup</a>
+        </div>
+    </div>
+    {{{body}}}
 </body>
 </html>
+
+
+
