@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {User} = require('../../models/User');
+const { User } = require('../../models/User');
 const withAuth = require('../../utils/auth');
 
 
@@ -11,7 +11,7 @@ router.post('/', async (req, res) => {
         req.session.user_id = dbUserData.id;
         req.session.username = dbUserData.username;
         req.session.logged_in = true;
-        res.status(201).json({ message: `Account created for ${dbUserData.usernam}`});
+        res.status(201).json({ message: `Account created for ${dbUserData.username}`});
         });
     } catch (err) {
       res.status(400).json(err);
@@ -40,7 +40,7 @@ router.post('/', async (req, res) => {
   
       req.session.save(() => {
         req.session.user_id = dbUserData.id;
-        req.session.usernam = dbUserData.usernam;
+        req.session.username = dbUserData.username;
         req.session.logged_in = true;
         
         res.json({ user: dbUserData, message: 'You are now logged in!' });
@@ -53,7 +53,7 @@ router.post('/', async (req, res) => {
   
   router.post('/logout', withAuth, async (req, res) => {
     try {
-        if (req.session.loggedIn) {
+        if (req.session.logged_in) {
             const dbUserData = await req.session.destroy(() => {
                 res.status(204).end();
             });
